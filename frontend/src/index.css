@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================
+   Every *.module.css can then use these variables.
+   ========================================================== */
+
+:root {
+    /* Brand colors */
+    --c-violet: #7c3aed;
+    --c-indigo: #4f46e5;
+    --c-blue: #2563eb;
+    --c-teal: #14b8a6;
+    --c-green: #22c55e;
+    --c-yellow: #facc15;
+    --c-orange: #fb923c;
+    --c-pink: #ec4899;
+    --c-red: #ef4444;
+
+    /* Gradients */
+    --grad-bg: linear-gradient(135deg, #6d5dfc 0%, #b36bff 35%, #ff6fb5 70%, #ffa66b 100%);
+    --grad-primary: linear-gradient(135deg, var(--c-violet), var(--c-pink));
+    --grad-secondary: linear-gradient(135deg, var(--c-teal), var(--c-blue));
+    --grad-warm: linear-gradient(135deg, var(--c-orange), var(--c-pink));
+    --grad-success: linear-gradient(135deg, var(--c-green), var(--c-teal));
+
+    /* Surfaces (frosted glass over the colorful background) */
+    --surface: rgba(255, 255, 255, 0.88);
+    --surface-strong: #ffffff;
+    --border: rgba(255, 255, 255, 0.6);
+
+    /* Text */
+    --text: #2b2350;
+    --text-muted: #6b6490;
+    --text-on-color: #ffffff;
+
+    /* Shape & depth */
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-pill: 999px;
+    --shadow-sm: 0 2px 8px rgba(60, 30, 120, 0.12);
+    --shadow-md: 0 8px 24px rgba(60, 30, 120, 0.18);
+    --shadow-lg: 0 16px 48px rgba(60, 30, 120, 0.25);
+
+    /* Spacing scale */
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 24px;
+    --sp-6: 32px;
+    --sp-7: 48px;
+
+    /* Typography */
+    --font: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+    --transition: 0.2s ease;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font);
+    color: var(--text);
+    line-height: 1.6;
+    background: var(--grad-bg);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0 0 var(--sp-3);
+    line-height: 1.25;
+    font-weight: 700;
+}
+
+p {
+    margin: 0 0 var(--sp-3);
+}
+
+a {
+    color: var(--c-violet);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:hover {
+    color: var(--c-pink);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+:focus-visible {
+    outline: 3px solid var(--c-yellow);
+    outline-offset: 2px;
+}
+
+/* Optional: add Poppins in public/index.html <head>:
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  */

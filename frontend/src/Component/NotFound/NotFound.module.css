@@ -1,0 +1,123 @@
+/* NotFound.module.css */
+
+.main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sp-5) var(--sp-4);
+}
+
+/* Card */
+.card {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-3);
+    padding: var(--sp-7) var(--sp-6) var(--sp-6);
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--c-red), var(--c-orange), var(--c-yellow), var(--c-green), var(--c-blue), var(--c-violet));
+}
+
+/* Big 404 */
+.code {
+    font-size: 7rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, var(--c-violet), var(--c-pink), var(--c-orange));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 8px 16px rgba(124, 58, 237, 0.3));
+    animation: float 3s ease-in-out infinite;
+}
+
+.title {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--c-indigo);
+}
+
+.text {
+    margin: 0 0 var(--sp-3);
+    max-width: 340px;
+    color: var(--text-muted);
+}
+
+/* Back home button */
+.button {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: var(--radius-pill);
+    background: var(--grad-primary);
+    color: var(--text-on-color);
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
+    transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    color: var(--text-on-color);
+    box-shadow: 0 12px 28px rgba(236, 72, 153, 0.5);
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .code {
+        animation: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: var(--sp-6) var(--sp-5) var(--sp-5);
+    }
+
+    .code {
+        font-size: 5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+}

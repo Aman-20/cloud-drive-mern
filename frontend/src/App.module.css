@@ -1,0 +1,50 @@
+/* Paste this at the bottom of your page's .module.css */
+
+.loaderPage {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-4);
+}
+
+.spinner {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 7px solid rgba(255, 255, 255, 0.35);
+    border-top-color: var(--c-yellow);
+    border-right-color: var(--c-pink);
+    border-bottom-color: var(--c-teal);
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.4);
+    animation: spin 1s linear infinite;
+}
+
+.loadingText {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text-on-color);
+    text-shadow: 0 4px 16px rgba(60, 30, 120, 0.35);
+    animation: fade 1.2s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fade {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}

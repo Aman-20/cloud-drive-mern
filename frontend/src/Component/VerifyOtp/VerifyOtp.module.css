@@ -1,0 +1,194 @@
+/* VerifyOtp.module.css  (rename to match your component file) */
+
+.main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-4);
+    padding: var(--sp-5) var(--sp-4);
+}
+
+.head {
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-on-color);
+    letter-spacing: 1px;
+    text-shadow: 0 4px 16px rgba(60, 30, 120, 0.35);
+}
+
+/* Card */
+.formPage {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-5);
+    padding: var(--sp-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.formPage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--c-green), var(--c-teal), var(--c-blue), var(--c-violet));
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+}
+
+/* Big, centered OTP input */
+.input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e4defa;
+    border-radius: var(--radius-md);
+    background: #faf8ff;
+    color: var(--text);
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 8px;
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.input::placeholder {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+.input:hover {
+    border-color: #cdbffa;
+}
+
+.input:focus {
+    outline: none;
+    background: var(--surface-strong);
+    border-color: var(--c-violet);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.18);
+}
+
+/* Shared button base */
+.button,
+.resend {
+    padding: 14px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition), filter var(--transition), background var(--transition), color var(--transition);
+}
+
+/* Primary: Verify */
+.button {
+    border: none;
+    background: var(--grad-primary);
+    color: var(--text-on-color);
+    box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow: 0 12px 28px rgba(236, 72, 153, 0.5);
+}
+
+/* Secondary: Resend (outlined) */
+.resend {
+    border: 2px solid var(--c-teal);
+    background: transparent;
+    color: var(--c-teal);
+}
+
+.resend:hover {
+    background: var(--grad-secondary);
+    border-color: transparent;
+    color: var(--text-on-color);
+    transform: translateY(-2px);
+}
+
+.button:active,
+.resend:active {
+    transform: translateY(0);
+}
+
+.button:disabled,
+.resend:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    filter: none;
+}
+
+/* Change email link */
+.link {
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--c-violet);
+}
+
+.link:hover {
+    color: var(--c-pink);
+    text-decoration: underline;
+}
+
+/* Status messages */
+.error,
+.success,
+.loading {
+    width: 100%;
+    max-width: 420px;
+    margin: 0;
+    padding: var(--sp-3) var(--sp-4);
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    text-align: center;
+    color: var(--text-on-color);
+    box-shadow: var(--shadow-md);
+}
+
+.error {
+    background: linear-gradient(135deg, var(--c-red), var(--c-orange));
+}
+
+.success {
+    background: var(--grad-success);
+}
+
+.loading {
+    background: var(--grad-secondary);
+}
+
+@media (max-width: 480px) {
+    .head {
+        font-size: 1.9rem;
+    }
+
+    .formPage {
+        padding: var(--sp-5);
+    }
+
+    .input {
+        font-size: 1.2rem;
+        letter-spacing: 6px;
+    }
+}
