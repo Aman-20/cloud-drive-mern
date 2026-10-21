@@ -5,9 +5,11 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoConnect = require("../backend/config/connection");
+const path = require("path");
 
 const staticRoute = require("../backend/router/staticRoute");
 const userRoute = require("../backend/router/userRoute");
+const fileRouter = require("../backend/router/fileRouter");
 
 const helmet = require("helmet");
 
@@ -24,12 +26,15 @@ app.use(cookieParser());
 app.use(cors({
     credentials:true,
     origin:process.env.FRONTEND_URL,
-}))
+}));
+
+app.use(express.static(path.join(__dirname,"public")))
 
 mongoConnect(process.env.MONGO_URL);
 
 app.use("/", staticRoute);
 app.use("/user", userRoute);
+app.use('/file', fileRouter);
 
 app.listen(PORT, ()=>{
     console.log(`Express Connected to Port ${PORT}`);
