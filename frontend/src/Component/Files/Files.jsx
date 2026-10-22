@@ -128,7 +128,6 @@ const Files = () => {
         <div className={styles.page}>
             <div className={styles.header}>
                 <h1 className={styles.title}>My Files</h1>
-                <Link to="/upload" className={styles.uploadLink}>+ Upload</Link>
             </div>
 
             <div className={styles.panel}>

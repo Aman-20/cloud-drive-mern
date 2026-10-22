@@ -10,10 +10,6 @@
 .header {
     width: 100%;
     max-width: 960px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--sp-3);
 }
 
 .title {
@@ -21,20 +17,6 @@
     font-size: 2.2rem;
     color: var(--text-on-color);
     text-shadow: 0 4px 16px rgba(60, 30, 120, 0.35);
-}
-
-.uploadLink {
-    padding: 9px 22px;
-    border-radius: var(--radius-pill);
-    background: var(--grad-secondary);
-    color: var(--text-on-color);
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
-}
-
-.uploadLink:hover {
-    color: var(--text-on-color);
-    filter: brightness(1.08);
 }
 
 .panel {
