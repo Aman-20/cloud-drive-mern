@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "./App.module.css";
 
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import Signup from './Component/Signup/Signup';
 import Navbar from './Component/Navbar/Navbar';
@@ -9,6 +9,9 @@ import Login from "./Component/Login/Login";
 import VerifyOtp from './Component/VerifyOtp/VerifyOtp';
 import ForgotPass from './Component/ForgotPass/ForgotPass';
 import ResestPass from './Component/ResetPass/ResestPass';
+
+import Upload from "./Component/Upload/Upload";
+import Files from "./Component/Files/Files";
 
 import { ProtectedRoute } from './Component/ProtectedRoute';
 import { RedirectIfAuth } from './Component/RedirectIfAuth';
@@ -20,7 +23,7 @@ import HomePage from './Component/HomePage/HomePage';
 
 const App = () => {
 
-  const {loading} = useAuth();
+  const { loading } = useAuth();
   if (loading) {
     return (
       <div className={styles.loaderPage}>
@@ -32,25 +35,29 @@ const App = () => {
 
   return (
     <>
-    <Router>
+      <Router>
 
-      <Navbar/>
+        <Navbar />
 
-      <Routes>
-        <Route path="/" element={ <ProtectedRoute> <HomePage/> </ProtectedRoute> }/>
-        
-        <Route path="/signup" element={ <RedirectIfAuth> <Signup/> </RedirectIfAuth> }/>
-        <Route path="/login" element={ <RedirectIfAuth> <Login/> </RedirectIfAuth> }/>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
 
-        <Route path='/verify-otp' element={ <VerifyOtp/> } />
+          <Route path="/signup" element={<RedirectIfAuth> <Signup /> </RedirectIfAuth>} />
+          <Route path="/login" element={<RedirectIfAuth> <Login /> </RedirectIfAuth>} />
 
-        <Route path="/forgot-password" element={ <RedirectIfAuth> <ForgotPass/> </RedirectIfAuth> } />
-        <Route path="/reset-password/:token" element={ <RedirectIfAuth>  <ResestPass/> </RedirectIfAuth> } />
+          <Route path='/verify-otp' element={<VerifyOtp />} />
 
-        <Route path='*' element={<NotFound/>} />
-      </Routes>
-      
-    </Router>
+          <Route path="/forgot-password" element={<RedirectIfAuth> <ForgotPass /> </RedirectIfAuth>} />
+          <Route path="/reset-password/:token" element={<RedirectIfAuth>  <ResestPass /> </RedirectIfAuth>} />
+
+          <Route path="/upload" element={<ProtectedRoute> <Upload /> </ProtectedRoute>} />
+          <Route path="/files" element={<ProtectedRoute> <Files /> </ProtectedRoute>} />
+
+
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+
+      </Router>
     </>
   )
 }

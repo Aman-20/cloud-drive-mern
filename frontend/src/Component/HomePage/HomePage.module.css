@@ -1,23 +1,95 @@
-/* HomePage.module.css - Coming Soon */
+/* HomePage.module.css - landing page, uses the variables from index.css */
 
 .main {
-    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: var(--sp-5) var(--sp-4);
+    gap: var(--sp-7);
+    padding: var(--sp-7) var(--sp-4) calc(var(--sp-7) + var(--sp-5));
 }
 
-/* Card */
-.card {
+/* Hero */
+.hero {
     width: 100%;
-    max-width: 480px;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-4);
+    text-align: center;
+}
+
+.title {
+    margin: 0;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 800;
+    color: var(--text-on-color);
+    text-shadow: 0 4px 16px rgba(60, 30, 120, 0.35);
+}
+
+.subtitle {
+    margin: 0;
+    max-width: 540px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 2px 8px rgba(60, 30, 120, 0.3);
+}
+
+.cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--sp-3);
+    margin-top: var(--sp-2);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform var(--transition), filter var(--transition);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.primary {
+    background: var(--surface-strong);
+    color: var(--c-violet);
+    box-shadow: var(--shadow-md);
+}
+
+.primary:hover {
+    color: var(--c-pink);
+}
+
+.secondary {
+    background: rgba(255, 255, 255, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    color: var(--text-on-color);
+}
+
+.secondary:hover {
+    color: var(--text-on-color);
+}
+
+/* Supported file types */
+.types {
+    width: 100%;
+    max-width: 720px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--sp-3);
-    padding: var(--sp-7) var(--sp-6) var(--sp-6);
-    text-align: center;
+    padding: var(--sp-5);
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
@@ -27,62 +99,89 @@
     overflow: hidden;
 }
 
-.card::before {
-    content: '';
+.types::before {
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    inset: 0 0 auto 0;
     height: 6px;
     background: linear-gradient(90deg, var(--c-teal), var(--c-violet), var(--c-pink), var(--c-orange));
 }
 
-.icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 84px;
-    height: 84px;
-    border-radius: 26px;
-    background: var(--grad-primary);
-    box-shadow: 0 10px 24px rgba(236, 72, 153, 0.4);
-    font-size: 2.6rem;
+.typesLabel {
+    margin: var(--sp-2) 0 0;
+    font-weight: 600;
+    color: var(--c-indigo);
 }
 
-.badge {
+.chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--sp-2);
+}
+
+.chip {
     padding: 6px 16px;
     border-radius: var(--radius-pill);
     background: #f1ebff;
     color: var(--c-violet);
     font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
-.title {
-    margin: 0;
-    font-size: 3rem;
-    font-weight: 800;
+/* Features */
+.features {
+    width: 100%;
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--sp-5);
+}
+
+.feature {
+    padding: var(--sp-5);
+    background: var(--surface-strong);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.featureIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: var(--sp-3);
+    border-radius: 16px;
     background: var(--grad-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+    box-shadow: 0 6px 16px rgba(236, 72, 153, 0.35);
+    font-size: 1.5rem;
 }
 
-.text {
+.featureTitle {
+    margin: 0 0 var(--sp-2);
+    color: var(--c-indigo);
+}
+
+.featureText {
     margin: 0;
-    max-width: 340px;
     color: var(--text-muted);
 }
 
 @media (max-width: 480px) {
-    .card {
-        padding: var(--sp-6) var(--sp-5);
+    .main {
+        gap: var(--sp-6);
+        padding-top: var(--sp-6);
     }
 
-    .title {
-        font-size: 2.3rem;
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .cta {
+        width: 100%;
+        flex-direction: column;
     }
 }

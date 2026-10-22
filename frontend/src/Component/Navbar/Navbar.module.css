@@ -36,6 +36,7 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
+    text-decoration: none;
 }
 
 /* Right-side actions */
