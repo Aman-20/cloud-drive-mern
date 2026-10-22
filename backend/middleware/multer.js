@@ -49,9 +49,11 @@ const upload = multer({
         if (allowedMimeTypes.includes(file.mimetype)) {
             cb(null, true);
         } else {
-            cb(new Error("Invalid file type!"), false);
+            const err = new Error("Invalid file type!");
+            err.status = 400;
+            cb(err, false);
         }
     }
 });
 
-module.exports = {upload};
+module.exports = { upload };

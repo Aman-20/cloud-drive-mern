@@ -7,6 +7,8 @@ const cookieParser = require("cookie-parser");
 const mongoConnect = require("../backend/config/connection");
 const path = require("path");
 
+const errorHandler = require("../backend/middleware/errorhandler");
+
 const staticRoute = require("../backend/router/staticRoute");
 const userRoute = require("../backend/router/userRoute");
 const fileRouter = require("../backend/router/fileRouter");
@@ -35,6 +37,15 @@ mongoConnect(process.env.MONGO_URL);
 app.use("/", staticRoute);
 app.use("/user", userRoute);
 app.use('/file', fileRouter);
+
+// 404 for unknown routes (otherwise Express sends HTML "Cannot GET /xyz")
+app.use((req, res) => {
+    res.status(404).json({ success: false, msg: "Route not found" });
+});
+
+// Global error handler
+app.use(errorHandler);
+
 
 app.listen(PORT, ()=>{
     console.log(`Express Connected to Port ${PORT}`);
