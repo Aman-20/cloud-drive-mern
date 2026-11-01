@@ -1,49 +1,35 @@
-/* VerifyOtp.module.css  (rename to match your component file) */
+/* Verify OTP */
 
 .main {
-    min-height: 100vh;
+    min-height: calc(100vh - var(--navbar-h));
+    min-height: calc(100dvh - var(--navbar-h));
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--sp-4);
-    padding: var(--sp-5) var(--sp-4);
+    padding: var(--sp-6) var(--sp-4);
 }
 
 .head {
-    font-size: 2.4rem;
-    font-weight: 700;
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
     text-align: center;
-    color: var(--text-on-color);
-    letter-spacing: 1px;
-    text-shadow: 0 4px 16px rgba(60, 30, 120, 0.35);
+    color: var(--text);
 }
 
 /* Card */
 .formPage {
     width: 100%;
-    max-width: 420px;
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-5);
+    max-width: 400px;
     padding: var(--sp-6);
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-}
-
-.formPage::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background: linear-gradient(90deg, var(--c-green), var(--c-teal), var(--c-blue), var(--c-violet));
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-5);
 }
 
 .form {
@@ -55,16 +41,16 @@
 /* Big, centered OTP input */
 .input {
     width: 100%;
-    padding: 14px 16px;
-    border: 2px solid #e4defa;
-    border-radius: var(--radius-md);
-    background: #faf8ff;
+    min-height: 46px;
+    padding: 10px 14px;
+    border: 1px solid var(--border-input);
+    background: var(--surface);
     color: var(--text);
     font-size: 1.4rem;
     font-weight: 600;
     text-align: center;
     letter-spacing: 8px;
-    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .input::placeholder {
@@ -76,79 +62,71 @@
 }
 
 .input:hover {
-    border-color: #cdbffa;
+    border-color: var(--border-hover);
 }
 
 .input:focus {
     outline: none;
-    background: var(--surface-strong);
-    border-color: var(--c-violet);
-    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.18);
+    border-color: var(--text);
+    box-shadow: 0 0 0 1px var(--text);
 }
 
-/* Shared button base */
-.button,
-.resend {
-    padding: 14px;
-    border-radius: var(--radius-pill);
-    font-weight: 600;
-    font-size: 1.05rem;
-    cursor: pointer;
-    transition: transform var(--transition), box-shadow var(--transition), filter var(--transition), background var(--transition), color var(--transition);
-}
-
-/* Primary: Verify */
 .button {
-    border: none;
-    background: var(--grad-primary);
-    color: var(--text-on-color);
-    box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
+    min-height: 46px;
+    padding: 0 var(--sp-4);
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition);
 }
 
-.button:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.08);
-    box-shadow: 0 12px 28px rgba(236, 72, 153, 0.5);
+.button:hover:not(:disabled) {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* Secondary: Resend (outlined) */
 .resend {
-    border: 2px solid var(--c-teal);
+    min-height: 46px;
+    padding: 0 var(--sp-4);
+    border: 1px solid var(--border-strong);
     background: transparent;
-    color: var(--c-teal);
+    color: var(--text);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
 }
 
-.resend:hover {
-    background: var(--grad-secondary);
-    border-color: transparent;
-    color: var(--text-on-color);
-    transform: translateY(-2px);
+.resend:hover:not(:disabled) {
+    background: var(--accent);
+    color: var(--on-accent);
 }
 
-.button:active,
-.resend:active {
-    transform: translateY(0);
-}
-
-.button:disabled,
 .resend:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
-    transform: none;
-    filter: none;
 }
 
 /* Change email link */
 .link {
     text-align: center;
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--c-violet);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    color: var(--text-muted);
 }
 
 .link:hover {
-    color: var(--c-pink);
-    text-decoration: underline;
+    color: var(--text);
 }
 
 /* Status messages */
@@ -156,31 +134,36 @@
 .success,
 .loading {
     width: 100%;
-    max-width: 420px;
+    max-width: 400px;
     margin: 0;
     padding: var(--sp-3) var(--sp-4);
-    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    font-size: 0.9rem;
     font-weight: 500;
-    text-align: center;
-    color: var(--text-on-color);
-    box-shadow: var(--shadow-md);
 }
 
 .error {
-    background: linear-gradient(135deg, var(--c-red), var(--c-orange));
+    border-color: var(--danger);
+    background: var(--danger-bg);
+    color: var(--danger);
 }
 
 .success {
-    background: var(--grad-success);
+    border-color: var(--success);
+    background: var(--success-bg);
+    color: var(--success);
 }
 
 .loading {
-    background: var(--grad-secondary);
+    border-left-color: var(--text);
+    background: var(--surface-alt);
+    color: var(--text-muted);
 }
 
 @media (max-width: 480px) {
     .head {
-        font-size: 1.9rem;
+        font-size: 1.5rem;
     }
 
     .formPage {

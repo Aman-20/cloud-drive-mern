@@ -1,5 +1,8 @@
+/* My Files page */
+
 .page {
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - var(--navbar-h));
+    min-height: calc(100dvh - var(--navbar-h));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,9 +17,10 @@
 
 .title {
     margin: 0;
-    font-size: 2.2rem;
-    color: var(--text-on-color);
-    text-shadow: 0 4px 16px rgba(60, 30, 120, 0.35);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text);
 }
 
 .panel {
@@ -25,24 +29,26 @@
     padding: var(--sp-5);
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
 }
 
+/* Toolbar: select-all + bulk delete */
 .toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: var(--sp-3);
     margin-bottom: var(--sp-4);
+    padding-bottom: var(--sp-4);
+    border-bottom: 1px solid var(--border);
 }
 
 .selectAll {
     display: flex;
     align-items: center;
     gap: var(--sp-2);
-    font-weight: 600;
-    color: var(--c-indigo);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
     cursor: pointer;
 }
 
@@ -50,46 +56,56 @@
 .check {
     width: 18px;
     height: 18px;
-    accent-color: var(--c-violet);
-    cursor: pointer;
-}
-
-.deleteSelected,
-.delete {
-    border: none;
-    border-radius: var(--radius-pill);
-    background: var(--grad-warm);
-    color: var(--text-on-color);
-    font-weight: 600;
+    margin: 0;
+    accent-color: var(--accent);
     cursor: pointer;
 }
 
 .deleteSelected {
-    padding: 9px 20px;
+    min-height: 38px;
+    padding: 0 var(--sp-4);
+    border: 1px solid var(--danger);
+    background: transparent;
+    color: var(--danger);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+}
+
+.deleteSelected:hover:not(:disabled) {
+    background: var(--danger);
+    color: var(--on-accent);
 }
 
 .deleteSelected:disabled,
 .delete:disabled,
 .pager button:disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
 }
 
+/* Messages */
 .msg {
+    margin-bottom: var(--sp-3);
     padding: var(--sp-2) var(--sp-3);
-    border-radius: var(--radius-sm);
-    border-left: 5px solid;
-    background: var(--surface-strong);
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    background: var(--surface-alt);
+    font-size: 0.9rem;
     font-weight: 500;
 }
 
 .error {
-    border-color: var(--c-red);
-    color: var(--c-red);
+    border-color: var(--danger);
+    background: var(--danger-bg);
+    color: var(--danger);
 }
 
 .notice {
-    border-color: var(--c-green);
+    border-color: var(--success);
+    background: var(--success-bg);
+    color: var(--success);
 }
 
 .empty {
@@ -98,6 +114,15 @@
     color: var(--text-muted);
 }
 
+.empty a {
+    color: var(--text);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+/* File grid */
 .grid {
     list-style: none;
     display: grid;
@@ -111,22 +136,27 @@
     flex-direction: column;
     gap: var(--sp-2);
     padding: var(--sp-3);
-    background: var(--surface-strong);
-    border: 2px solid transparent;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    transition: border-color var(--transition);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.itemSelected {
-    border-color: var(--c-violet);
+.item:hover {
+    border-color: var(--border-hover);
+}
+
+.itemSelected,
+.itemSelected:hover {
+    border-color: var(--text);
+    box-shadow: 0 0 0 1px var(--text);
 }
 
 .check {
     position: absolute;
-    top: var(--sp-3);
-    left: var(--sp-3);
+    top: var(--sp-4);
+    left: var(--sp-4);
     z-index: 1;
+    box-shadow: 0 0 0 3px var(--surface);
 }
 
 .thumb {
@@ -135,8 +165,7 @@
     justify-content: center;
     height: 120px;
     overflow: hidden;
-    border-radius: var(--radius-sm);
-    background: #f1edff;
+    background: var(--surface-alt);
 }
 
 .thumb img {
@@ -146,12 +175,13 @@
 }
 
 .badge {
-    padding: 6px 14px;
-    border-radius: var(--radius-pill);
-    background: var(--grad-primary);
-    color: var(--text-on-color);
-    font-weight: 700;
-    font-size: 0.85rem;
+    padding: 4px 10px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
 }
 
 .info {
@@ -160,7 +190,8 @@
 
 .name {
     margin: 0;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -181,42 +212,95 @@
 .open,
 .delete {
     flex: 1;
-    padding: 6px 0;
-    border-radius: var(--radius-pill);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0;
+    border: 1px solid var(--border);
+    background: var(--surface);
     font-size: 0.85rem;
-    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
 }
 
 .open {
-    border: 2px solid var(--c-violet);
-    font-weight: 600;
+    border-color: var(--border-strong);
+    color: var(--text);
 }
 
+.open:hover {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+.delete {
+    color: var(--text-muted);
+}
+
+.delete:hover:not(:disabled) {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+/* Pagination */
 .pager {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: var(--sp-4);
     margin-top: var(--sp-5);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--border);
+}
+
+.pager span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
 }
 
 .pager button {
-    padding: 8px 18px;
-    border: none;
-    border-radius: var(--radius-pill);
-    background: var(--grad-secondary);
-    color: var(--text-on-color);
-    font-weight: 600;
+    min-height: 38px;
+    padding: 0 var(--sp-4);
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 500;
     cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+}
+
+.pager button:hover:not(:disabled) {
+    background: var(--accent);
+    color: var(--on-accent);
 }
 
 @media (max-width: 480px) {
+    .page {
+        padding: var(--sp-5) var(--sp-3);
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    .panel {
+        padding: var(--sp-4);
+    }
+
     .toolbar {
         flex-direction: column;
         align-items: stretch;
     }
 
     .grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: var(--sp-3);
+    }
+
+    .pager {
+        gap: var(--sp-3);
     }
 }

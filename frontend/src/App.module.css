@@ -1,34 +1,33 @@
-/* Paste this at the bottom of your page's .module.css */
+/* Full-page loader shown while the server wakes up */
 
 .loaderPage {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--sp-4);
-}
-
-.spinner {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: 7px solid rgba(255, 255, 255, 0.35);
-    border-top-color: var(--c-yellow);
-    border-right-color: var(--c-pink);
-    border-bottom-color: var(--c-teal);
-    box-shadow: 0 0 24px rgba(255, 255, 255, 0.4);
-    animation: spin 1s linear infinite;
+    background: var(--bg);
 }
 
 .loadingText {
     margin: 0;
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--text-on-color);
-    text-shadow: 0 4px 16px rgba(60, 30, 120, 0.35);
-    animation: fade 1.2s ease-in-out infinite;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    animation: fade 1.6s ease-in-out infinite;
+}
+
+/* Square spinner (kept for any inline use) */
+.spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--border);
+    border-top-color: var(--text);
+    animation: spin 0.9s linear infinite;
 }
 
 @keyframes spin {
@@ -41,7 +40,7 @@
 
     0%,
     100% {
-        opacity: 0.5;
+        opacity: 0.45;
     }
 
     50% {

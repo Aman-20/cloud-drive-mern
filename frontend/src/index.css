@@ -1,54 +1,43 @@
-* {
-    box-sizing: border-box;
-    padding: 0px;
-    margin: 0px;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
 /* ==========================================================
-   Every *.module.css can then use these variables.
+   Global styles + design tokens.
+   Minimal / monochrome. Square corners (no border-radius).
+   Every *.module.css uses the variables below.
    ========================================================== */
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 :root {
-    /* Brand colors */
-    --c-violet: #7c3aed;
-    --c-indigo: #4f46e5;
-    --c-blue: #2563eb;
-    --c-teal: #14b8a6;
-    --c-green: #22c55e;
-    --c-yellow: #facc15;
-    --c-orange: #fb923c;
-    --c-pink: #ec4899;
-    --c-red: #ef4444;
+    /* Surfaces */
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --surface-alt: #f4f4f5;
 
-    /* Gradients */
-    --grad-bg: linear-gradient(135deg, #6d5dfc 0%, #b36bff 35%, #ff6fb5 70%, #ffa66b 100%);
-    --grad-primary: linear-gradient(135deg, var(--c-violet), var(--c-pink));
-    --grad-secondary: linear-gradient(135deg, var(--c-teal), var(--c-blue));
-    --grad-warm: linear-gradient(135deg, var(--c-orange), var(--c-pink));
-    --grad-success: linear-gradient(135deg, var(--c-green), var(--c-teal));
-
-    /* Surfaces (frosted glass over the colorful background) */
-    --surface: rgba(255, 255, 255, 0.88);
-    --surface-strong: #ffffff;
-    --border: rgba(255, 255, 255, 0.6);
+    /* Lines */
+    --border: #e4e4e7;
+    --border-input: #d4d4d8;
+    --border-hover: #a1a1aa;
+    --border-strong: #111113;
 
     /* Text */
-    --text: #2b2350;
-    --text-muted: #6b6490;
-    --text-on-color: #ffffff;
+    --text: #111113;
+    --text-muted: #6b6b76;
 
-    /* Shape & depth */
-    --radius-sm: 10px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
-    --radius-pill: 999px;
-    --shadow-sm: 0 2px 8px rgba(60, 30, 120, 0.12);
-    --shadow-md: 0 8px 24px rgba(60, 30, 120, 0.18);
-    --shadow-lg: 0 16px 48px rgba(60, 30, 120, 0.25);
+    /* Accent (primary actions) */
+    --accent: #111113;
+    --accent-hover: #34343a;
+    --on-accent: #ffffff;
+
+    /* Status (used sparingly) */
+    --danger: #b42318;
+    --danger-bg: #fef3f2;
+    --success: #067647;
+    --success-bg: #ecfdf3;
 
     /* Spacing scale */
     --sp-1: 4px;
@@ -59,17 +48,18 @@ html {
     --sp-6: 32px;
     --sp-7: 48px;
 
-    /* Typography */
-    --font: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    /* Layout */
+    --navbar-h: 64px;
 
-    --transition: 0.2s ease;
+    /* Typography */
+    --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    --transition: 0.15s ease;
 }
 
-/* Reset */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
 }
 
 html,
@@ -79,13 +69,14 @@ body,
 }
 
 body {
-    margin: 0;
     font-family: var(--font);
-    color: var(--text);
+    font-size: 1rem;
     line-height: 1.6;
-    background: var(--grad-bg);
-    background-attachment: fixed;
+    color: var(--text);
+    background: var(--bg);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 h1,
@@ -93,8 +84,9 @@ h2,
 h3,
 h4 {
     margin: 0 0 var(--sp-3);
-    line-height: 1.25;
-    font-weight: 700;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.02em;
 }
 
 p {
@@ -102,13 +94,8 @@ p {
 }
 
 a {
-    color: var(--c-violet);
+    color: inherit;
     text-decoration: none;
-    transition: color var(--transition);
-}
-
-a:hover {
-    color: var(--c-pink);
 }
 
 img {
@@ -122,13 +109,39 @@ select,
 textarea {
     font-family: inherit;
     font-size: 1rem;
+    border-radius: 0;
+}
+
+/* iOS/Safari add rounded corners and inner shadows to text-like inputs */
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+textarea {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--accent);
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--on-accent);
 }
 
 :focus-visible {
-    outline: 3px solid var(--c-yellow);
+    outline: 2px solid var(--text);
     outline-offset: 2px;
 }
 
-/* Optional: add Poppins in public/index.html <head>:
-     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

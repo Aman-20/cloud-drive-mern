@@ -1,5 +1,8 @@
+/* Upload page */
+
 .page {
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - var(--navbar-h));
+    min-height: calc(100dvh - var(--navbar-h));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,10 +11,11 @@
 }
 
 .title {
-    font-size: 2.4rem;
-    color: var(--text-on-color);
-    letter-spacing: 1px;
-    text-shadow: 0 4px 16px rgba(60, 30, 120, 0.35);
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text);
 }
 
 .card {
@@ -23,44 +27,47 @@
     padding: var(--sp-5);
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    position: relative;
-    overflow: hidden;
-}
-
-.card::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 6px;
-    background: linear-gradient(90deg, var(--c-orange), var(--c-pink), var(--c-violet), var(--c-teal));
 }
 
 .cardTitle {
-    margin: var(--sp-2) 0 0;
-    color: var(--c-indigo);
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
 }
 
 .fileInput {
     width: 100%;
-    padding: 12px 16px;
-    border: 2px dashed #cdbffa;
-    border-radius: var(--radius-md);
-    background: #faf8ff;
-    color: var(--text);
+    padding: var(--sp-3) var(--sp-4);
+    border: 1px dashed var(--border-hover);
+    background: var(--bg);
+    color: var(--text-muted);
+    font-size: 0.9rem;
     cursor: pointer;
+    transition: border-color var(--transition), background var(--transition);
+}
+
+.fileInput:hover {
+    border-color: var(--text);
+    background: var(--surface-alt);
 }
 
 .fileInput::file-selector-button {
     margin-right: var(--sp-3);
     padding: 6px 14px;
-    border: none;
-    border-radius: var(--radius-pill);
-    background: var(--grad-secondary);
-    color: var(--text-on-color);
-    font-weight: 600;
+    border: 1px solid var(--border-strong);
+    border-radius: 0;
+    background: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-weight: 500;
     cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+}
+
+.fileInput::file-selector-button:hover {
+    background: var(--accent);
+    color: var(--on-accent);
 }
 
 .fileList {
@@ -68,7 +75,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--sp-1);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: var(--text-muted);
 }
 
@@ -79,63 +86,84 @@
 }
 
 .button {
-    padding: 12px;
-    border: none;
-    border-radius: var(--radius-pill);
-    background: var(--grad-primary);
-    color: var(--text-on-color);
-    font-weight: 600;
+    min-height: 44px;
+    padding: 0 var(--sp-4);
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
-    transition: transform var(--transition), filter var(--transition);
+    transition: background var(--transition), border-color var(--transition);
 }
 
 .button:hover:not(:disabled) {
-    transform: translateY(-2px);
-    filter: brightness(1.08);
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
 }
 
 .button:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
 }
 
-/* status box */
+/* Status box (class comes from status.type: success | error | info) */
 .status {
     width: 100%;
     max-width: 480px;
     padding: var(--sp-3) var(--sp-4);
-    border-radius: var(--radius-md);
-    background: var(--surface-strong);
-    box-shadow: var(--shadow-sm);
-    border-left: 6px solid var(--c-indigo);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text);
 }
 
 .status p {
     margin: 0;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
 .success {
-    border-left-color: var(--c-green);
+    border-left-color: var(--success);
 }
 
 .error {
-    border-left-color: var(--c-red);
+    border-left-color: var(--danger);
 }
 
 .info {
-    border-left-color: var(--c-orange);
+    border-left-color: var(--border-hover);
 }
 
 .failList {
     margin: var(--sp-2) 0 0 var(--sp-4);
     font-size: 0.85rem;
-    color: var(--c-red);
+    color: var(--danger);
 }
 
 .link {
     display: inline-block;
     margin-top: var(--sp-2);
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+.link:hover {
+    text-decoration-thickness: 2px;
+}
+
+@media (max-width: 480px) {
+    .page {
+        padding: var(--sp-5) var(--sp-3);
+    }
+
+    .card {
+        padding: var(--sp-4);
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
 }
